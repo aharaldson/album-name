@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const methodOverride = require('method-override');
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -17,6 +18,7 @@ require('./config/passport');
 
 const indexRouter = require('./routes/index');
 const albumsRouter = require('./routes/albums');
+const reviewsRouter = require('./routes/reviews');
 
 
 
@@ -50,6 +52,7 @@ app.use(function( req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/albums', albumsRouter);
+app.use('/', reviewsRouter);
 // Mount these routers to root because not all 
 // paths for a related/nested resource begin the same
 
