@@ -26,12 +26,10 @@ async function create(req, res) {
         if (req.body[key] === '') delete req.body[key];
       }
       try {
-        // Update this line because now we need the _id of the new movie
         const album = await Album.create(req.body);
-        // Redirect to the new movie's show functionality 
+        req.body.user = req.user._id;
         res.redirect(`/albums/${album._id}`);
       } catch (err) {
-        // Typically some sort of validation error
         console.log(err);
         res.render('albums/new', { errorMsg: err.message });
       }

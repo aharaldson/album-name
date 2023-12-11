@@ -27,6 +27,11 @@ const albumSchema = new Schema ({
     artist: String,
     title: String,
     releaseYear: Number,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
     tracks: [String],
     reviews: [reviewSchema]
 }, {

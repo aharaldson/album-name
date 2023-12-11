@@ -7,9 +7,7 @@ module.exports = {
 };
 
 async function create(req, res) {
-    console.log('reached create ctrl')
   const album = await Album.findById(req.params.id);
-    console.log('found album', album)
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar;
